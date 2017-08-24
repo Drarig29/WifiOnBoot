@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WiFi On Boot</string>
+    <string name="add_network">Enregistrer</string>
+    <string name="enable_wifi">Se connecter</string>
+    <string name="enter_network_info">Veuillez saisir le nom et le mot de passe du réseau auquel vous voulez être automatiquement connecté au démarrage.</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="ssid_hint">Nom</string>
+    <string name="show_networks_content_description">Plus</string>
+    <string name="please_enable_wifi">Veuillez activer le Wi-Fi</string>
+    <string name="please_enter_password">Veuillez entrer le mot de passe du réseau</string>
+    <string name="please_enter_ssid">Veuillez entrer le nom du réseau</string>
+</resources>

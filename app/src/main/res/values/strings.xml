@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WiFi On Boot</string>
+    <string name="enable_wifi">Connect</string>
+    <string name="add_network">Save</string>
+    <string name="enter_network_info">Please enter the name and the password of the network you want to be automatically connected to after boot.</string>
+    <string name="ssid_hint">Name</string>
+    <string name="password_hint">Password</string>
+    <string name="show_networks_content_description">More</string>
+    <string name="please_enable_wifi">Please enable Wi-Fi</string>
+    <string name="please_enter_ssid">Please enter the network name</string>
+    <string name="please_enter_password">Please enter the network password</string>
+</resources>
