@@ -1,7 +1,9 @@
 package com.drarig29.wifionboot;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +13,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText txtSsid, txtPassword;
+    SharedPreferences settings;
+
+    public static final String SSID_SHARED_PREFS = "SSID";
+    public static final String PASSWORD_SHARED_PREFS = "PASSWORD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new WifiHelper(getApplicationContext());
+        settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
         txtSsid = (EditText) findViewById(R.id.txtSsid);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
+
+        txtSsid.setText(settings.getString(SSID_SHARED_PREFS, null));
+        txtPassword.setText(settings.getString(PASSWORD_SHARED_PREFS, null));
 
         findViewById(R.id.btnShowNetworks).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,5 +99,16 @@ public class MainActivity extends AppCompatActivity {
 
         String ssid = data.getStringExtra("ssid");
         ((EditText) findViewById(R.id.txtSsid)).setText(ssid);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(SSID_SHARED_PREFS, txtSsid.getText().toString());
+        editor.putString(PASSWORD_SHARED_PREFS, txtPassword.getText().toString());
+
+        editor.apply();
     }
 }
