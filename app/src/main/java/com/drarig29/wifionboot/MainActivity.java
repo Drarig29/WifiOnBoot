@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -74,15 +75,22 @@ public class MainActivity extends AppCompatActivity {
     boolean emptySsidOrPassword() {
         boolean empty = false;
 
+        TextInputLayout ssidLayout = (TextInputLayout) findViewById(R.id.ssidParent);
+        TextInputLayout passwordLayout = (TextInputLayout) findViewById(R.id.passwordParent);
+
         if (TextUtils.isEmpty(txtSsid.getText().toString().trim())) {
-            txtSsid.setError(getString(R.string.please_enter_ssid));
+            ssidLayout.setErrorEnabled(true);
+            ssidLayout.setError(getString(R.string.please_enter_ssid));
             empty = true;
-        }
+        } else
+            ssidLayout.setErrorEnabled(false);
 
         if (TextUtils.isEmpty(txtPassword.getText().toString().trim())) {
-            txtPassword.setError(getString(R.string.please_enter_password));
+            passwordLayout.setErrorEnabled(true);
+            passwordLayout.setError(getString(R.string.please_enter_password));
             empty = true;
-        }
+        } else
+            passwordLayout.setErrorEnabled(false);
 
         return empty;
     }
