@@ -10,9 +10,4 @@
     <string name="please_enter_ssid">Please enter the network name</string>
     <string name="please_enter_password">Please enter the network password</string>
     <string name="save_config">Save</string>
-    <string name="cant_load_config">The app can\'t load the config file</string>
-    <string name="cant_save_config">The app can\'t save the config file</string>
-    <string name="warn_read_storage_denied">This permission is used to read the config file which stores the name and the password of the network.</string>
-    <string name="warn_write_storage_denied">This permission is used to save the config file which stores the name and the password of the network</string>
-    <string name="question_allow_it">Do you want to allow it?</string>
 </resources>
