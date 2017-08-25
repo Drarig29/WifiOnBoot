@@ -11,4 +11,9 @@
     <string name="please_enter_password">Veuillez entrer le mot de passe du réseau</string>
     <string name="please_enter_ssid">Veuillez entrer le nom du réseau</string>
     <string name="save_config">Enregistrer</string>
+    <string name="cant_load_config">Impossible de lire la configuration</string>
+    <string name="cant_save_config">Impossible d\'enregistrer  la configuration</string>
+    <string name="warn_read_storage_denied">Cette autorisation sert à lire le fichier qui contient le nom et le mot de passe du réseau.</string>
+    <string name="warn_write_storage_denied">Cette autorisation sert à enregistrer le fichier qui contient le nom et le mot de passe du réseau.</string>
+    <string name="question_allow_it">Voulez-vous l\'autoriser ?</string>
 </resources>
