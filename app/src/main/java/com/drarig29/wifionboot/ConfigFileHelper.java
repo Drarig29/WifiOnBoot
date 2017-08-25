@@ -5,6 +5,7 @@ import android.os.Environment;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -39,6 +40,21 @@ class ConfigFileHelper {
         }
 
         return c;
+    }
+
+    static void saveConfig(String ssid, String key) {
+        FileOutputStream os;
+        try {
+            os = new FileOutputStream(CONFIG_FILE);
+
+            String data = String.format("ssid=\"%s\"\n" +
+                    "key=\"%s\"\n", ssid, key);
+
+            os.write(data.getBytes());
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static boolean fileExists() {

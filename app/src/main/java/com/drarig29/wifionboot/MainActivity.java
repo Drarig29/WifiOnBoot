@@ -52,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.btnSaveConfig).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (emptySsidOrPassword())
+                    return;
+
+                ConfigFileHelper.saveConfig(txtSsid.getText().toString(), txtPassword.getText().toString());
+            }
+        });
+
         findViewById(R.id.btnConnect).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
