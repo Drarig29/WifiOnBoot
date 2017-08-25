@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 if (emptySsidOrPassword())
                     return;
 
+                if (!WifiHelper.isWifiEnabled()) {
+                    Toast.makeText(MainActivity.this, R.string.please_enable_wifi, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 WifiHelper.addNetwork(txtSsid.getText().toString(), txtPassword.getText().toString());
             }
         });
@@ -68,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 if (emptySsidOrPassword())
                     return;
 
+                if (!WifiHelper.isWifiEnabled()) {
+                    Toast.makeText(MainActivity.this, R.string.please_enable_wifi, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String ssid = txtSsid.getText().toString();
 
                 if (!WifiHelper.isNetworkConfigured(ssid))
@@ -77,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //TODO : add permission ask
 
     void checkConfigFile() {
         if (!ConfigFileHelper.fileExists())

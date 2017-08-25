@@ -18,6 +18,15 @@ public class BootReceiver extends BroadcastReceiver {
         Toast.makeText(context, "Activation du wifi", Toast.LENGTH_SHORT).show();
 
         new WifiHelper(context);
-        WifiHelper.connectToRegisteredSsid("SFR_81D0");
+
+        ConfigFileHelper.Config c = ConfigFileHelper.getConfig();
+
+        if (!WifiHelper.isWifiEnabled())
+            WifiHelper.enableAndWaitForWifi();
+
+        if (!WifiHelper.isNetworkConfigured(c.ssid))
+            WifiHelper.addNetwork(c.ssid, c.key);
+
+        WifiHelper.connectToRegisteredSsid(c.ssid);
     }
 }

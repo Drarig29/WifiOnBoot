@@ -47,7 +47,7 @@ class WifiHelper {
         return b;
     }
 
-    static String wrapWithQuotes(String s) {
+    private static String wrapWithQuotes(String s) {
         return "\"" + s + "\"";
     }
 
@@ -80,7 +80,7 @@ class WifiHelper {
         wifiManager.addNetwork(conf);
     }
 
-    static void connectToRegisteredSsid(String ssid) {
+    static void enableAndWaitForWifi() {
         Log.i(TAG, "Enabling wifi...");
 
         if (!wifiManager.isWifiEnabled())
@@ -95,7 +95,9 @@ class WifiHelper {
 
             Log.i(TAG, "Waiting for wifi...");
         }
+    }
 
+    static void connectToRegisteredSsid(String ssid) {
         Log.i(TAG, "Connecting to " + ssid + "...");
 
         for (WifiConfiguration wifi : wifiManager.getConfiguredNetworks())
