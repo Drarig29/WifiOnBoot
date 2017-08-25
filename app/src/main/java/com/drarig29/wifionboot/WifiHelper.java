@@ -27,18 +27,15 @@ class WifiHelper {
     static ArrayList<String> getSsidList() {
         ArrayList<String> list = new ArrayList<>();
 
-        for (WifiConfiguration wifi : wifiManager.getConfiguredNetworks()) {
-            String ssid = wifi.SSID;
-            ssid = ssid.substring(1, ssid.length() - 1); //remove the " "
-            list.add(ssid);
-        }
+        for (WifiConfiguration wifi : wifiManager.getConfiguredNetworks())
+            list.add(removeQuotes(wifi.SSID));
 
         return list;
     }
 
     static boolean isNetworkConfigured(String ssid) {
         boolean b = false;
-        ssid = "\"" + ssid + "\"";
+        ssid = wrapWithQuotes(ssid);
 
         for (WifiConfiguration wifi : wifiManager.getConfiguredNetworks()) {
             if (wifi.SSID.equals(ssid)) {
@@ -50,11 +47,19 @@ class WifiHelper {
         return b;
     }
 
+    static String wrapWithQuotes(String s) {
+        return "\"" + s + "\"";
+    }
+
+    static String removeQuotes(String s) {
+        return s.substring(1, s.length() - 1);
+    }
+
     static void addNetwork(String ssid, String key) {
         Log.i(TAG, "Configuring " + ssid + "...");
 
         WifiConfiguration conf = new WifiConfiguration();
-        conf.SSID = "\"" + ssid + "\"";
+        conf.SSID = wrapWithQuotes(ssid);
 
         //WEP
         /*
@@ -65,7 +70,7 @@ class WifiHelper {
          */
 
         //WPA
-        conf.preSharedKey = "\"" + key + "\"";
+        conf.preSharedKey = wrapWithQuotes(key);
 
         //Open networks
         /*
