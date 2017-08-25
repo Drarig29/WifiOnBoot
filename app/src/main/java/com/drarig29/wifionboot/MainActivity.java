@@ -1,7 +1,7 @@
 package com.drarig29.wifionboot;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,17 +12,17 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     EditText txtSsid, txtPassword;
-    SharedPreferences settings;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new WifiHelper(getApplicationContext());
+        context = getApplicationContext();
+
+        new WifiHelper(context);
 
         txtSsid = (EditText) findViewById(R.id.txtSsid);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (emptySsidOrPassword())
                     return;
 
-                ConfigFileHelper.saveConfig(txtSsid.getText().toString(), txtPassword.getText().toString());
+                ConfigFileHelper.saveConfig(context, txtSsid.getText().toString(), txtPassword.getText().toString());
             }
         });
 
@@ -88,13 +88,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //TODO : add permission ask
-
     void checkConfigFile() {
-        if (!ConfigFileHelper.fileExists())
+        if (!ConfigFileHelper.fileExists(context))
             return;
 
-        ConfigFileHelper.Config c = ConfigFileHelper.getConfig();
+        ConfigFileHelper.Config c = ConfigFileHelper.getConfig(context);
         txtSsid.setText(c.ssid);
         txtPassword.setText(c.key);
     }

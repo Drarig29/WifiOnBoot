@@ -19,7 +19,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         new WifiHelper(context);
 
-        ConfigFileHelper.Config c = ConfigFileHelper.getConfig();
+        ConfigFileHelper.Config c = ConfigFileHelper.getConfig(context);
 
         if (!WifiHelper.isWifiEnabled())
             WifiHelper.enableAndWaitForWifi();

@@ -1,29 +1,32 @@
 package com.drarig29.wifionboot;
 
 
-import android.os.Environment;
+import android.content.Context;
 
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 class ConfigFileHelper {
 
     private static final String TAG = ConfigFileHelper.class.getSimpleName();
 
-    private static final File CONFIG_FILE = new File(Environment.getExternalStorageDirectory(), "wifionboot.conf");
+    private static final String CONFIG_FILE = "wifionboot.conf";
 
     static class Config {
         String ssid, key;
     }
 
-    static Config getConfig() {
+    static Config getConfig(Context context) {
         Config c = new Config();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(CONFIG_FILE));
+            FileInputStream input = context.openFileInput(CONFIG_FILE);
+            InputStreamReader inputStreamReader = new InputStreamReader(input);
+            BufferedReader br = new BufferedReader(inputStreamReader);
+
             String line;
 
             while ((line = br.readLine()) != null) {
@@ -42,10 +45,11 @@ class ConfigFileHelper {
         return c;
     }
 
-    static void saveConfig(String ssid, String key) {
+    static void saveConfig(Context context, String ssid, String key) {
         FileOutputStream os;
+
         try {
-            os = new FileOutputStream(CONFIG_FILE);
+            os = context.openFileOutput(CONFIG_FILE, Context.MODE_PRIVATE);
 
             String data = String.format("ssid=\"%s\"\n" +
                     "key=\"%s\"\n", ssid, key);
@@ -57,7 +61,7 @@ class ConfigFileHelper {
         }
     }
 
-    static boolean fileExists() {
-        return CONFIG_FILE.exists();
+    static boolean fileExists(Context context) {
+        return context.getFileStreamPath(CONFIG_FILE).exists();
     }
 }
