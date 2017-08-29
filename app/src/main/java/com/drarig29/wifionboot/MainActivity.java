@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 WifiHelper.addNetwork(txtSsid.getText().toString(), txtPassword.getText().toString());
+
+                Toast.makeText(MainActivity.this, R.string.network_added, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
 
                 ConfigFileHelper.saveConfig(context, txtSsid.getText().toString(), txtPassword.getText().toString());
+
+                Toast.makeText(MainActivity.this, R.string.network_saved, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                     WifiHelper.addNetwork(ssid, txtPassword.getText().toString());
 
                 WifiHelper.connectToRegisteredSsid(ssid);
+
+                Toast.makeText(MainActivity.this, getString(R.string.connected_to) + ssid, Toast.LENGTH_SHORT).show();
             }
         });
     }

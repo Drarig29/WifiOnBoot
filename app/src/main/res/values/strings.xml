@@ -10,4 +10,7 @@
     <string name="please_enter_ssid">Please enter the network name</string>
     <string name="please_enter_password">Please enter the network password</string>
     <string name="save_config">Save</string>
+    <string name="network_added">Network added</string>
+    <string name="network_saved">Network saved</string>
+    <string name="connected_to">"Connected to "</string>
 </resources>

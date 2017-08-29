@@ -11,4 +11,7 @@
     <string name="please_enter_password">Veuillez entrer le mot de passe du réseau</string>
     <string name="please_enter_ssid">Veuillez entrer le nom du réseau</string>
     <string name="save_config">Enregistrer</string>
+    <string name="network_added">Réseau ajouté</string>
+    <string name="network_saved">Réseau enregistré</string>
+    <string name="connected_to">"Connecté à "</string>
 </resources>
